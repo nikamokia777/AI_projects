@@ -22,7 +22,7 @@ texts = [chunk.page_content for chunk in chunks]
 
 result = client.models.embed_content(
     model=EMBEDDING_MODEL,
-    content=texts,
+    contents=texts,
 )
 
 embeddings = [item.values for item in result.embeddings]
@@ -34,7 +34,7 @@ with Session as session:
 
         document_chunk = DocumentChunk(
             content=chunk.page_content,
-            chunk_metadata=chunk.metadata,
+            meta=chunk.metadata,
             embedding=embedding
         )
 

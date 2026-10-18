@@ -13,7 +13,7 @@ from models import DocumentChunk
 
 client = genai.Client()
 EMBEDDING_MODEL = "gemini-embedding-001"
-llm = ChatGoogleGenerativeAI(model_name="gemini-3.5-flash-lite", temperature=0.2)
+llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite", temperature=0.2)
 prompt = ChatPromptTemplate.from_messages(
     [
         ('system',
@@ -27,7 +27,7 @@ prompt = ChatPromptTemplate.from_messages(
 def retrieve_documents(question : str):
     query_result = client.models.embed_content(
         model=EMBEDDING_MODEL,
-        content=question
+        contents=question
     )
     query_embedding = query_result.embeddings[0].values
     query = (

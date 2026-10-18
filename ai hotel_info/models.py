@@ -8,13 +8,13 @@ from database import engine
 class Base(DeclarativeBase):
     pass
 
-class Chunks(Base):
+class DocumentChunk(Base):
     __tablename__ = "hotel_info_chunks"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    chunk: Mapped[str] = mapped_column(Text)
+    content: Mapped[str] = mapped_column(Text)
     embedding: Mapped[list[float]] = mapped_column(Vector(3072))
-    metadata: Mapped[dict] = mapped_column(JSONB)
+    meta: Mapped[dict] = mapped_column('metadata',JSONB)
 
 if __name__ == "__main__":
     Base.metadata.create_all(engine)
